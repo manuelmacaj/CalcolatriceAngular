@@ -1,0 +1,12 @@
+<div class="calcolatrice">
+    <div class="display">
+        <input type="text" class="displayInput" disabled value="0" [(ngModel)]="display">
+    </div>
+    <div class="grid-calcolatrice">
+        <button *ngFor="let segno of simboli" class="segno" (click)="selezionaSegno(segno)">{{segno}}</button>
+        <button *ngFor="let numero of numeriCalcolatrice" (click)="inserisciNumero(numero)"
+            class="bottone">{{numero}}</button>
+        <button class="bottone" (click)="calcolo()">=</button>
+        <button class="AC" (click)="clearAll()">AC</button>
+    </div>
+</div>

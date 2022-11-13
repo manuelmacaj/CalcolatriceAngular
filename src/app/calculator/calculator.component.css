@@ -1,0 +1,35 @@
+.calcolatrice {
+    margin: 0 auto;
+    padding: 10px;
+    width: 50%;
+}
+
+.display {
+    padding: 5px;
+}
+
+.displayInput {
+    padding: 5px;
+}
+
+.grid-calcolatrice {
+    display: grid;
+    padding: 5px;
+    grid-template-columns: repeat(4, 1fr);
+    row-gap: 10px;
+    column-gap: 10px;
+}
+
+button {
+    background-color: transparent;
+    height: 4em;
+}
+.AC {
+    background-color: rgba(255, 0, 0, 0.585);
+    font-weight: bolder;
+}
+
+.segno {
+    background-color: rgba(0, 94, 255, 0.552);
+    font-weight: bolder;
+}
