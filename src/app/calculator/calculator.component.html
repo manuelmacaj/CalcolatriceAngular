@@ -1,6 +1,6 @@
 <div class="calcolatrice">
     <div class="display">
-        <input type="text" class="displayInput" disabled value="0" [(ngModel)]="display">
+        <input type="text" class="displayInput" readonly value="0" [(ngModel)]="display">
     </div>
     <div class="grid-calcolatrice">
         <button *ngFor="let segno of simboli" class="segno" (click)="selezionaSegno(segno)">{{segno}}</button>
