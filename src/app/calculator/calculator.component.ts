@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostBinding, HostListener, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-calculator',
@@ -14,6 +14,7 @@ export class CalculatorComponent implements OnInit {
   num2 = 0;
   segnoSelezionato = '';
   display = "0";
+  canClearAll = false;
 
   constructor() { }
 
@@ -31,6 +32,7 @@ export class CalculatorComponent implements OnInit {
     this.num1 = parseFloat(this.display);
     this.segnoSelezionato = segno;
     this.display = "";
+    this.canClearAll = true;
   }
 
   private checkSecondNumber() {
@@ -39,9 +41,8 @@ export class CalculatorComponent implements OnInit {
   }
 
 
-  calcolo() {
+  calcolo() { // esegui calcolo
     this.checkSecondNumber();
-
     console.log(this.num1 + " " + this.num2)
     const a = this.num1;
     const b = this.num2;
@@ -71,13 +72,29 @@ export class CalculatorComponent implements OnInit {
     this.display = result.toString()
   }
 
-  clearAll() {
-    if (this.display != "0") {
-      this.display = "0"
-      this.num1 = 0
-      this.num2 = 0
-      this.segnoSelezionato = ""
-      console.log("clear all")
+  clearAll() { // cancella tutto
+    this.display = "0"
+    this.num1 = 0
+    this.num2 = 0
+    this.segnoSelezionato = ""
+    this.canClearAll = false;
+    console.log("clear all")
+  }
+
+  @HostListener("window:keydown", ['$event']) // eventi dalla tastiera
+  keyEvent(event: KeyboardEvent) {
+    const key = event.key.toLowerCase();
+    if (key == "escape") {
+      this.clearAll()
+    }
+    else if (this.simboli.includes(key, 0)) {
+      this.selezionaSegno(key);
+    }
+    else if (!isNaN(parseInt(key))) {
+      this.inserisciNumero(parseInt(key))
+    }
+    else if (key == "enter") {
+      this.calcolo();
     }
   }
 }

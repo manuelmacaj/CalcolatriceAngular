@@ -7,6 +7,12 @@
         <button *ngFor="let numero of numeriCalcolatrice" (click)="inserisciNumero(numero)"
             class="bottone">{{numero}}</button>
         <button class="bottone" (click)="calcolo()">=</button>
-        <button class="AC" (click)="clearAll()">AC</button>
+        <button class="AC" (click)="clearAll()" [disabled]="!canClearAll">AC</button>
     </div>
 </div>
+
+<ul>
+    <li>Esc => clear all (AC Button)</li>
+    <li>Enter => calculate the operation</li>
+    <li>From PC => you can type numbers and operations from your keyboard</li>
+</ul>
